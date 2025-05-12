@@ -153,9 +153,7 @@ async def respond_to_message(message: types.Message):
         await message.answer("Please select a valid model from the /models list by sending its corresponding command (e.g., `/mistralsmall3124binstruct`).")
 
 # ➕ Privacy Policy Command
-@dp.message_handler(filters.Command(commands=["privacypolicy"], prefixes="!/", ignore_case=False))
-async def privacy_policy(message: types.Message):
-    await message.answer("🔐 We ensure your privacy.")
+
 
 # ➕ Owner-only Announcement Command
 OWNER_ID = 123456789  # Replace this with your real Telegram user ID
@@ -166,6 +164,26 @@ user_chat_ids = set()
 async def respond_to_message(message: types.Message):
     user_chat_ids.add(message.chat.id)
     await message.answer("I'm not sure how to respond to that. Use /models to select a model.")
+
+@dp.message_handler(filters.Command(commands=["help"], prefixes="!/", ignore_case=False))
+async def help_command(message: types.Message):
+    help_text = (
+        "🆘 *@smartautomations_bot Help* 🆘\n"
+        "────────────────────\n"
+        "💬 *How to chat*:\n"
+        "Just type messages like:\n"
+        "• \"Explain quantum physics ⚛️\"\n"
+        "• \"Write a haiku about cats 🐱\"\n\n"
+        "⚙️ *Commands*:\n"
+        "🔄 /start - Reset conversation\n"
+        "ℹ️ /models - Model List\n"
+        "ℹ️ /help - This message\n\n"
+        "📏 *Limits*:\n"
+        "4000 chars/message\n"
+        "(we auto-split 📜)\n\n"
+        "🔋 *Status*: Operational ✅"
+    )
+    await message.answer(help_text, parse_mode="Markdown")
 
 @dp.message_handler(filters.Command(commands=["ownerannouncement"], prefixes="!/", ignore_case=False))
 async def owner_announcement(message: types.Message):
