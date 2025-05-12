@@ -91,11 +91,28 @@ def list_available_models():
 
 
 @dp.message_handler(filters.Command(commands=["start"], prefixes="!/", ignore_case=False))
+
 async def start(message: types.Message):
-    welcome_text = ("Hi, I am your AI assistant! 🤖\n"
-                    "Please select a model from the /models list using /models.\n"
-                    "To select a model, send its corresponding command (e.g., `/qwq32b`).")
-    await message.answer(welcome_text, parse_mode='HTML')
+    welcome_text = (
+    "🎉 *Welcome!*\n\n"
+    "✨ *I'm your personal AI assistant* ✨\n\n"
+    "🤖 How can I assist you today?\n\n"
+    "🔥 *Features*:\n"
+    "✅ 100% Free & Unlimited\n"
+    "✅ Instant Responses\n"
+    "✅ Memory Across Chats\n\n"
+    "📝 *Quick Commands*:\n"
+    "ℹ️ /models - Model List\n"
+    "ℹ️ /help - Show this menu\n\n"
+    "⚡ *Extra Features*\n"
+    "• Unlimited\n"
+    "• 3x Faster Responses\n"
+    "• 32K Context Memory\n\n"
+    "⚒ *Support*: @Smartautomationsuppport_bot\n\n"
+    "🚀 *Powered by*: @smartautomations"
+)
+await message.answer(welcome_text, parse_mode="Markdown")
+
     if message.chat.id in user_selected_models:
         del user_selected_models[message.chat.id]
 
