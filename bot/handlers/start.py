@@ -124,7 +124,7 @@ async def start(message: types.Message):
 )
 await message.answer(welcome_text, parse_mode="Markdown")
 
-    if message.chat.id in user_selected_models:
+if message.chat.id in user_selected_models:
         del user_selected_models[message.chat.id]
 
 
@@ -209,8 +209,7 @@ async def owner_announcement(message: types.Message):
 
     for user_id in user_chat_ids:
         try:
-            await message.bot.send_message(chat_id=user_id, text=f"📢 Announcement:
-{announcement}")
+            await message.bot.send_message(chat_id=user_id, text=f"📢 Announcement:\n{announcement}")
         except Exception as e:
             print(f"Failed to send to {user_id}: {e}")
 
